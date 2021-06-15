@@ -1,2 +1,2 @@
-# p4_tunneling
-Materials for TIP labolatory
+# Tunneling using P4
+Authors: Piotr Pasternak, Anna Brytańczyk
