@@ -1,0 +1,16 @@
+{
+    "program": "simple_router.p4",
+    "language": "p4-16",
+    "targets": {
+        "home": {
+            "use": "multiswitch",
+            "topo_module": "hometopo",
+            "cli": true
+        },
+        "foreign": {
+            "use": "multiswitch",
+            "topo_module": "foreigntopo",
+            "cli": true
+        }
+      }
+}
