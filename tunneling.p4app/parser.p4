@@ -2,13 +2,21 @@ parser ParserImpl(packet_in packet, out headers hdr, inout metadata meta, inout 
     @name("parse_ethernet") state parse_ethernet {
         packet.extract(hdr.ethernet);
         transition select(hdr.ethernet.etherType) {
-            16w0x800: parse_ipv4;
+            0x1212: parse_tunnel;            
+	    16w0x800: parse_ipv4;
             default: accept;
         }
     }
     @name("parse_ipv4") state parse_ipv4 {
         packet.extract(hdr.ipv4);
         transition accept;
+    }
+    @name("parse_tunnel") state pare_tunnel {
+	packet.extract(hdr.tunnel);
+	transition select(hdr.tunnel.proto_id) {
+	    16w0x800: parse_ipv4;
+	    default: accept;
+	}
     }
     @name("start") state start {
         transition parse_ethernet;
@@ -18,6 +26,7 @@ parser ParserImpl(packet_in packet, out headers hdr, inout metadata meta, inout 
 control DeparserImpl(packet_out packet, in headers hdr) {
     apply {
         packet.emit(hdr.ethernet);
+	packet.emit(hdr.tunnel);
         packet.emit(hdr.ipv4);
     }
 }
