@@ -5,15 +5,29 @@
         "home": {
             "use": "multiswitch",
             "topo_module": "hometopo",
-            "cli": true,
-	    "switches": {
-		"s1": { "switch-config": "s1.config" },
-		"s2": { "switch-config": "s2.config" }
-	    },
-        },
-        "foreign": {
-            "use": "multiswitch",
-            "topo_module": "foreigntopo",
+            "switches": {
+                "s1": {
+                    "switch-config": "s1.config"
+                },
+                "s2": {
+                    "switch-config": "s2.config"
+                }
+		    },
+            "hosts":{
+                "h1": {
+                    "ip": "10.0.0.1/24",
+		            "mac": "00:00:00:00:00:01"
+                },
+                "h2": {
+                    "ip": "20.0.0.1/24",
+		            "mac": "00:00:00:00:00:02"
+                },
+                "h3": {
+                    "ip": "30.0.0.1/24",
+		            "mac": "00:00:00:00:00:03"
+                }
+            },
+            "auto-control-plane": true,
             "cli": true
         }
       }
