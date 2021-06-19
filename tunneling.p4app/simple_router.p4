@@ -51,7 +51,7 @@ control ingress(inout headers hdr, inout metadata meta, inout standard_metadata_
     }
     @name("ipv4_lpm") table ipv4_lpm {
         actions = {
-            _drop;
+	    _drop;
             set_nhop;
             NoAction;
         }
@@ -73,10 +73,32 @@ control ingress(inout headers hdr, inout metadata meta, inout standard_metadata_
         size = 512;
         default_action = NoAction();
     }
+//     @name("tunnel_exact") table tunnel {
+// 	actions = {
+// 	   // tunnel_forward;
+// 	    drop;
+// 	}
+// 	key = {
+// 	    hdr.tunnel.dst_id: exact;
+// 	}
+// 	size = 1024;
+// 	default_action = drop();
+//     }
+//    // @name("tunnel_forward") table tunnel_forward{
+// 	//standard_metadata.egress_spec = port;
+//    // }
     apply {
-        if (hdr.ipv4.isValid()) {
-          ipv4_lpm.apply();
-          forward.apply();
+        // if (hdr.ipv4.isValid() && !hdr.tunnel.isValid()) {
+        //   ipv4_lpm.apply();
+        //   forward.apply();
+        // }
+        // if(hdr.tunnel.isValid()){
+        //     tunnel_exact.apply();
+        //     //tunnel_forward.apply();
+        // }
+        if (hdr.ipv4.isValid()){
+            ipv4_lpm.apply();
+            forward.apply();
         }
     }
 }

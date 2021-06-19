@@ -18,6 +18,11 @@ header ethernet_t {
     bit<16> etherType;
 }
 
+header tunnel_t {
+    bit<16> proto_id;
+    bit<16> dst_id;
+}
+
 header ipv4_t {
     bit<4>  version;
     bit<4>  ihl;
@@ -44,6 +49,8 @@ struct metadata {
 struct headers {
     @name("ethernet")
     ethernet_t ethernet;
+    @name("tunnel")
+    tunnel_t   tunnel;
     @name("ipv4")
     ipv4_t     ipv4;
 }
