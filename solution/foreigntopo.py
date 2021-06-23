@@ -11,9 +11,8 @@ class CustomAppTopo(AppTopo):
         print "Using target:", manifest['targets'][target]
         
         # Add hosts and switches
-        #TODO set ip for each host
-        Host1 = self.addHost( 'h1', ip=#TODO, mac='00:00:00:00:00:01' )
-        Host2 = self.addHost( 'h2', ip=#TODO, mac='00:00:00:00:00:02' ) 
-        Host3 = self.addHost( 'h3', ip=#TODO, mac='00:00:00:00:00:03' )
+        Host1 = self.addHost( 'h1', ip='30.0.0.2/24', mac='00:00:00:00:00:01' )
+        Host2 = self.addHost( 'h2', ip='20.0.0.1/24', mac='00:00:00:00:00:02' )
+        Host3 = self.addHost( 'h3', ip='30.0.0.1/24', mac='00:00:00:00:00:03' )
         Switch1 = self.addSwitch('s1')
         Switch2 = self.addSwitch('s2')

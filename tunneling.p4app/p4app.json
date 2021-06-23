@@ -1,20 +1,16 @@
 {
-    "program": "simple_router.p4",
+    "program":"TODO - program specifing how switches should work",
     "language": "p4-16",
     "targets": {
         "home": {
             "use": "multiswitch",
             "topo_module": "hometopo",
-            "links": [["h1", "s1"], ["s1", "s2"], ["s1", "h2"], ["h3", "s2"]],
+            "links":"TODO - add links in the network so controlplane will see them",
             "auto-control-plane": true,
             "cli": true
         },
         "foreign": {
-            "use": "multiswitch",
-            "topo_module": "foreigntopo",
-            "links": [["h3", "s2"], ["s1", "s2"], ["s1", "h2"], ["h1", "s2"]],
-            "auto-control-plane": true,
-            "cli": true
+            "TODO": "create topology for foreign network basing on above method"
         }
       }
 }
